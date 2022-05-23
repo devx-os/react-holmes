@@ -21,7 +21,11 @@ const useHolmesSelector = (keys = []) => {
     });
     return () => {
       if (unSubscribers.length > 0) {
-        unSubscribers.forEach((s) => s.unsubscribe());
+        try {
+          unSubscribers.forEach((s) => s.unsubscribe());
+        } catch (e) {
+          console.error(e);
+        }
       }
     };
   }, []);

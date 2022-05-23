@@ -27,7 +27,11 @@ const setHolmesReducer = (
     }
     return () => {
       if (observable) {
-        observable.unsubscribe();
+        try {
+          observable.unsubscribe();
+        } catch (e) {
+          console.error(e);
+        }
       }
     };
   }, []);
