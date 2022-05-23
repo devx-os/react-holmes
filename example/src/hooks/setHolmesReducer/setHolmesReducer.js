@@ -42,4 +42,4 @@ const useSetHolmesReducer = (key = "", initialState = null, reducer) => {
   return [tempState, dispatch];
 };
 
-export default setHolmesReducer;
+export default useSetHolmesReducer;
