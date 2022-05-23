@@ -13,7 +13,11 @@ const useHolmesValue = (key = '') => {
       setValue(data);
     });
     return () => {
-      observable.unsubscribe();
+      try {
+        observable.unsubscribe();
+      } catch (e) {
+        console.error(e);
+      }
     };
   }, []);
 

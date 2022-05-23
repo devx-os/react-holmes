@@ -22,7 +22,11 @@ const useObservableState = (key = '', initialState = null) => {
     }
     return () => {
       if (observable) {
-        observable.unsubscribe();
+        try {
+          observable.unsubscribe();
+        } catch (e) {
+          console.error(e);
+        }
       }
     };
   }, []);
