@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import { onCheckKeyIfPresent } from '../../utils/Utils';
 import { getGlobalContext } from '../../holmes';
 
-const useObservableState = (key = '', initialState = null) => {
+const useHolmesState = (key = '', initialState = null) => {
   onCheckKeyIfPresent(key);
 
   const [tempState, setTempState] = React.useState();
@@ -51,4 +51,4 @@ const useObservableState = (key = '', initialState = null) => {
   return [tempState, setState];
 };
 
-export default useObservableState;
+export default useHolmesState;

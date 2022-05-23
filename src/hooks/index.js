@@ -1,4 +1,4 @@
-import useHolmesState from "./useHolmesState/userHolmesState";
+import useHolmesState from "./useHolmesState/useHolmesState";
 import useHolmesSelector from "./useHolmesSelector/useHolmesSelector";
 import useHolmesValue from "./useHolmesValue/useHolmesValue";
 import setHolmesReducer from "./setHolmesReducer/setHolmesReducer";
