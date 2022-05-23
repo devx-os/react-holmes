@@ -30,7 +30,7 @@ const setHolmesReducer = (
         try {
           observable.unsubscribe();
         } catch (e) {
-          console.error(e);
+          console.log(e);
         }
       }
     };

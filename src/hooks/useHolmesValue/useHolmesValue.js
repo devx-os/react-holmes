@@ -16,7 +16,7 @@ const useHolmesValue = (key = '') => {
       try {
         observable.unsubscribe();
       } catch (e) {
-        console.error(e);
+        console.log(e);
       }
     };
   }, []);
