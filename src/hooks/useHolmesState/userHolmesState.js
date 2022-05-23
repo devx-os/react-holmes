@@ -21,6 +21,8 @@ const useObservableState = (key = '', initialState = null) => {
       observable.subscribe((data) => setTempState(data));
     }
     return () => {
+      const context = getGlobalContext();
+      const observable = context.get(key);
       if (observable) {
         try {
           observable.unsubscribe();

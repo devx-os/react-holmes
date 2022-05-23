@@ -13,10 +13,14 @@ const useHolmesValue = (key = '') => {
       setValue(data);
     });
     return () => {
-      try {
-        observable.unsubscribe();
-      } catch (e) {
-        console.log(e);
+      const context = getGlobalContext();
+      const observable = context.get(key);
+      if (observable) {
+        try {
+          observable.unsubscribe();
+        } catch (e) {
+          console.log(e);
+        }
       }
     };
   }, []);
