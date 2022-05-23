@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from 'react';
 import {BehaviorSubject} from 'rxjs';
-import { onCheckKeyIfPresent } from '../../utils/Utils';
-import { getGlobalContext } from '../../holmes';
+import {onCheckKeyIfPresent} from '../../utils/Utils';
+import {getGlobalContext} from '../../holmes';
 
 const useHolmesState = (key = '', initialState = null) => {
   onCheckKeyIfPresent(key);
@@ -9,6 +9,7 @@ const useHolmesState = (key = '', initialState = null) => {
   const [tempState, setTempState] = useState();
 
   useEffect(() => {
+    let subscription = null
     const context = getGlobalContext();
     let observable = null;
     if (context.has(key)) {
@@ -18,17 +19,13 @@ const useHolmesState = (key = '', initialState = null) => {
       context.set(key, observable);
     }
     if (observable) {
-      observable.subscribe((data) => setTempState(data));
+      subscription = observable.subscribe((data) => setTempState(data));
     }
     return () => {
       const context = getGlobalContext();
       const observable = context.get(key);
-      if (observable) {
-        try {
-          observable.unsubscribe();
-        } catch (e) {
-          console.log(e);
-        }
+      if (observable && subscription) {
+        subscription.unsubscribe();
       }
     };
   }, []);

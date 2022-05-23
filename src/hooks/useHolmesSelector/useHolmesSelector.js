@@ -10,13 +10,13 @@ const useHolmesSelector = (keys = []) => {
     keys.forEach((key) => {
       if (context.has(key)) {
         const observable = context.get(key);
-        unSubscribers.push(observable);
-        observable.subscribe((data) => {
+        const subscription = observable.subscribe((data) => {
           setMapper((prev) => ({
             ...prev,
             [key]: data,
           }));
         });
+        unSubscribers.push(subscription);
       }
     });
     return () => {

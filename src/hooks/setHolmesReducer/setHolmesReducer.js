@@ -15,6 +15,7 @@ const setHolmesReducer = (
 
   useEffect(() => {
     const context = getGlobalContext();
+    let subscription = null
     let observable = null;
     if (context.has(key))
       throw new Error(`${key} already set, get the state with useHolmesReducer('key')`);
@@ -23,17 +24,13 @@ const setHolmesReducer = (
     context.set(key, observable);
     context.set(`${key}_dispatch`, dispatch);
     if (observable) {
-      observable.subscribe((data) => setTempState(data));
+      subscription = observable.subscribe((data) => setTempState(data));
     }
     return () => {
       const context = getGlobalContext();
       const observable = context.get(key);
-      if (observable) {
-        try {
-          observable.unsubscribe();
-        } catch (e) {
-          console.log(e);
-        }
+      if (observable && subscription) {
+        subscription.unsubscribe();
       }
     };
   }, []);
