@@ -1,4 +1,4 @@
-import React from 'react';
+import {useReducer, useState, useEffect} from 'react';
 import {BehaviorSubject} from 'rxjs';
 import {onCheckKeyIfPresent} from '../../utils/Utils';
 import {getGlobalContext} from '../../holmes';
@@ -10,10 +10,10 @@ const setHolmesReducer = (
 ) => {
   onCheckKeyIfPresent(key);
 
-  const [tempState, setTempState] = React.useState();
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [tempState, setTempState] = useState();
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const context = getGlobalContext();
     let observable = null;
     if (context.has(key))
@@ -38,7 +38,7 @@ const setHolmesReducer = (
     };
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const context = getGlobalContext();
     const observable = context.get(key);
     observable.next(state);

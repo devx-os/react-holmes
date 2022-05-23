@@ -1,11 +1,11 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 
 import {getGlobalContext} from '../../holmes';
 
 const useHolmesValue = (key = '') => {
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const context = getGlobalContext();
     if (!context.has(key)) throw new Error(`${key} has not been setted, set it first with useHolmesState() hook`);
     const observable = context.get(key);

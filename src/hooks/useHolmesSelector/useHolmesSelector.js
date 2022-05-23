@@ -1,10 +1,10 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import { getGlobalContext } from '../../holmes';
 
 const useHolmesSelector = (keys = []) => {
-  const [mapper, setMapper] = React.useState({});
+  const [mapper, setMapper] = useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     const context = getGlobalContext();
     const unSubscribers = [];
     keys.forEach((key) => {

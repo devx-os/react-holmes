@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {BehaviorSubject} from 'rxjs';
 import { onCheckKeyIfPresent } from '../../utils/Utils';
 import { getGlobalContext } from '../../holmes';
@@ -6,9 +6,9 @@ import { getGlobalContext } from '../../holmes';
 const useHolmesState = (key = '', initialState = null) => {
   onCheckKeyIfPresent(key);
 
-  const [tempState, setTempState] = React.useState();
+  const [tempState, setTempState] = useState();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const context = getGlobalContext();
     let observable = null;
     if (context.has(key)) {
@@ -33,7 +33,7 @@ const useHolmesState = (key = '', initialState = null) => {
     };
   }, []);
 
-  const setState = React.useCallback(
+  const setState = useCallback(
     (value) => {
       const context = getGlobalContext();
       const observable = context.get(key);
