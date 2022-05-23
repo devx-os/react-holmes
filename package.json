@@ -7,7 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cp -r ./src ./dist"
   },
   "author": "Riccardo Tartaglia",
   "peerDependencies": {
