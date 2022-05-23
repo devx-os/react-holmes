@@ -1,4 +1,3 @@
-import React from 'react';
-import * as hooks from './hooks/index'
+const hooks = require('./hooks/index')
 
-export const myHooks = {...hooks}
+module.exports = {...hooks}
