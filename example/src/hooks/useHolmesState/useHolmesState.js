@@ -1,41 +1,58 @@
-import {useState, useEffect, useCallback} from 'react';
-import {BehaviorSubject} from 'rxjs';
-import {onCheckKeyIfPresent} from '../../utils/Utils';
-import {getGlobalContext} from '../../holmes';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { BehaviorSubject } from "rxjs";
+import { onCheckKeyIfPresent } from "../../utils/Utils";
+import { getGlobalContext } from "../../holmes";
 
-const useHolmesState = (key = '', initialState = null) => {
+const useHolmesState = (key = "", initialState = null) => {
   onCheckKeyIfPresent(key);
 
+  let observable = null;
+  const obsRef = useRef(false);
   const [tempState, setTempState] = useState();
 
-  useEffect(() => {
-    let subscription = null
+  (function initObservable() {
     const context = getGlobalContext();
-    let observable = null;
-    if (context.has(key)) {
+    if (context.has(key) && !obsRef.current) {
       observable = context.get(key);
-    } else {
+      if (observable) obsRef.current = true;
+    }
+    if (!context.has(key) && !obsRef.current) {
       observable = new BehaviorSubject(initialState);
       context.set(key, observable);
+      if (observable) obsRef.current = true;
     }
-    if (observable) {
-      subscription = observable.subscribe((data) => setTempState(data));
+  })();
+
+  useEffect(() => {
+    if (obsRef.current) {
+      let subscription = null;
+      subscription = observable.subscribe({
+        next(data) {
+          setTempState(data);
+        },
+        error(err) {
+          console.log(err);
+        },
+        complete() {
+          console.log("done");
+        },
+      });
+      return () => {
+        const context = getGlobalContext();
+        const observable = context.get(key);
+        if (observable && subscription) {
+          subscription.unsubscribe();
+        }
+      };
     }
-    return () => {
-      const context = getGlobalContext();
-      const observable = context.get(key);
-      if (observable && subscription) {
-        subscription.unsubscribe();
-      }
-    };
-  }, []);
+  }, [obsRef.current]);
 
   const setState = useCallback(
     (value) => {
       const context = getGlobalContext();
       const observable = context.get(key);
       if (observable) {
-        if (typeof value === 'function') {
+        if (typeof value === "function") {
           observable.next(value(tempState));
         } else {
           observable.next(value);

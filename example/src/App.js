@@ -4,14 +4,14 @@ import Component3 from "./components/Component3";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Component1 />
       <hr />
       <Component2 />
       <hr />
       <Component3 />
       <hr />
-    </div>
+    </>
   );
 }
 
