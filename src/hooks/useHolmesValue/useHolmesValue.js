@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getGlobalContext} from '../../index';
+import {getGlobalContext} from '../../holmes';
 
 const useHolmesValue = (key = '') => {
   const [value, setValue] = React.useState(null);

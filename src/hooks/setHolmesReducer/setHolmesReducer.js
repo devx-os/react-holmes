@@ -1,7 +1,7 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs';
 import {onCheckKeyIfPresent} from '../../utils/Utils';
-import {getGlobalContext} from '../../index';
+import {getGlobalContext} from '../../holmes';
 
 const setHolmesReducer = (
   key = '',

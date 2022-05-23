@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getGlobalContext} from '../../index';
+import {getGlobalContext} from '../../holmes';
 import useHolmesValue from "../useHolmesValue/useHolmesValue";
 
 const useHolmesReducer = (key = '') => {

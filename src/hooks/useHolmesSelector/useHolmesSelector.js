@@ -1,5 +1,5 @@
 import React from 'react';
-import { getGlobalContext } from '../../index';
+import { getGlobalContext } from '../../holmes';
 
 const useHolmesSelector = (keys = []) => {
   const [mapper, setMapper] = React.useState({});

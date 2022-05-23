@@ -1,7 +1,7 @@
 import React from 'react';
 import {BehaviorSubject} from 'rxjs/dist/types';
 import { onCheckKeyIfPresent } from '../../utils/Utils';
-import { getGlobalContext } from '../../index';
+import { getGlobalContext } from '../../holmes';
 
 const useObservableState = (key = '', initialState = null) => {
   onCheckKeyIfPresent(key);
