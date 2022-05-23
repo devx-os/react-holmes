@@ -2,6 +2,7 @@
   "name": "@devx-os/react-holmes",
   "version": "0.1.5",
   "description": "",
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
