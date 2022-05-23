@@ -1,5 +1,5 @@
 import React from 'react';
-import {BehaviorSubject} from 'rxjs/dist/types';
+import {BehaviorSubject} from 'rxjs';
 import { onCheckKeyIfPresent } from '../../utils/Utils';
 import { getGlobalContext } from '../../holmes';
 
