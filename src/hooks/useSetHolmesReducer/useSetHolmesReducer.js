@@ -13,10 +13,10 @@ const useSetHolmesReducer = (key = "", initialState = null, reducer) => {
     const context = getGlobalContext();
     let subscription = null;
     let observable = null;
-    if (context.has(key))
+    /*if (context.has(key))
       throw new Error(
         `${key} already set, get the state with useHolmesReducer('key')`
-      );
+      );*/
 
     observable = new BehaviorSubject(initialState);
     context.set(key, observable);
