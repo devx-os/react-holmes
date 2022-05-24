@@ -2,50 +2,27 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { BehaviorSubject } from "rxjs";
 import { onCheckKeyIfPresent } from "../../utils/Utils";
 import { getGlobalContext } from "../../holmes";
+import {useHolmesValue} from "../index";
 
-const useHolmesState = (key = "", initialState = null) => {
+const useHolmesState = (key = "", initialState = undefined) => {
   onCheckKeyIfPresent(key);
-
-  let observable = null;
-  const obsRef = useRef(false);
-  const [tempState, setTempState] = useState();
+  const obsRef = useRef(null);
 
   (function initObservable() {
+    let observable = null;
     const context = getGlobalContext();
     if (context.has(key) && !obsRef.current) {
       observable = context.get(key);
-      if (observable) obsRef.current = true;
+      obsRef.current = observable;
     }
     if (!context.has(key) && !obsRef.current) {
       observable = new BehaviorSubject(initialState);
       context.set(key, observable);
-      if (observable) obsRef.current = true;
+      obsRef.current = observable;
     }
   })();
 
-  useEffect(() => {
-    if (obsRef.current) {
-      let subscription = null;
-      subscription = observable.subscribe({
-        next(data) {
-          setTempState(data);
-        },
-        error(err) {
-          console.log(err);
-        },
-        complete() {
-          console.log("done");
-        },
-      });
-      return () => {
-        const context = getGlobalContext();
-        const observable = context.get(key);
-        if (observable && subscription) {
-          subscription.unsubscribe();
-        }
-      };
-    }
-  }, [obsRef.current]);
+  const tempState = useHolmesValue(key);
 
   const setState = useCallback(
     (value) => {
@@ -62,7 +39,7 @@ const useHolmesState = (key = "", initialState = null) => {
     [tempState]
   );
 
-  return [tempState, setState];
+  return [tempState === undefined ? initialState : tempState, setState];
 };
 
 export default useHolmesState;

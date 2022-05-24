@@ -1,41 +1,35 @@
-import {useState, useEffect, useCallback} from 'react';
-import {BehaviorSubject} from 'rxjs';
-import {onCheckKeyIfPresent} from '../../utils/Utils';
-import {getGlobalContext} from '../../holmes';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { BehaviorSubject } from "rxjs";
+import { onCheckKeyIfPresent } from "../../utils/Utils";
+import { getGlobalContext } from "../../holmes";
+import {useHolmesValue} from "../index";
 
-const useHolmesState = (key = '', initialState = null) => {
+const useHolmesState = (key = "", initialState = undefined) => {
   onCheckKeyIfPresent(key);
+  const obsRef = useRef(null);
 
-  const [tempState, setTempState] = useState();
-
-  useEffect(() => {
-    let subscription = null
-    const context = getGlobalContext();
+  (function initObservable() {
     let observable = null;
-    if (context.has(key)) {
+    const context = getGlobalContext();
+    if (context.has(key) && !obsRef.current) {
       observable = context.get(key);
-    } else {
+      obsRef.current = observable;
+    }
+    if (!context.has(key) && !obsRef.current) {
       observable = new BehaviorSubject(initialState);
       context.set(key, observable);
+      obsRef.current = observable;
     }
-    if (observable) {
-      subscription = observable.subscribe((data) => setTempState(data));
-    }
-    return () => {
-      const context = getGlobalContext();
-      const observable = context.get(key);
-      if (observable && subscription) {
-        subscription.unsubscribe();
-      }
-    };
-  }, []);
+  })();
+
+  const tempState = useHolmesValue(key);
 
   const setState = useCallback(
     (value) => {
       const context = getGlobalContext();
       const observable = context.get(key);
       if (observable) {
-        if (typeof value === 'function') {
+        if (typeof value === "function") {
           observable.next(value(tempState));
         } else {
           observable.next(value);
@@ -45,7 +39,7 @@ const useHolmesState = (key = '', initialState = null) => {
     [tempState]
   );
 
-  return [tempState, setState];
+  return [tempState === undefined ? initialState : tempState, setState];
 };
 
 export default useHolmesState;

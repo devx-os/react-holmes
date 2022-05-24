@@ -1,8 +1,8 @@
 import React from "react";
-import { useHolmesState } from "../hooks";
+import {useHolmesState, useHolmesValue} from "../hooks";
 
 const Component3 = () => {
-  const [state, setState] = useHolmesState("component-1");
+  const state = useHolmesValue("component-1");
   return (
     <div>
       <p>Component3</p>
