@@ -1,6 +1,6 @@
 {
   "name": "@devx-os/react-holmes",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "",
   "main": "dist/index.js",
   "files": [
@@ -9,9 +9,8 @@
   "scripts": {
     "set:example": "rm -rf ./example/src/hooks ./example/src/holmes.js ./example/src/utils && cp -r ./src/hooks ./example/src && cp ./src/holmes.js ./example/src && cp -r ./src/utils ./example/src",
     "build": "rm -rf dist && cp -r src dist;",
-    "start:example" : "cd ./example && npm start"    
+    "start:example": "cd ./example && npm start"
   },
-
   "author": "Riccardo Tartaglia",
   "peerDependencies": {
     "react": ">=16",
