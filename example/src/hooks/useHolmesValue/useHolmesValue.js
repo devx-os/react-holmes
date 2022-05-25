@@ -1,34 +1,24 @@
 import {useState, useEffect, useRef} from 'react';
 
-import {getGlobalContext} from '../../holmes';
+import useObservable from "../useObservable/useObservable";
+import {getGlobalContext} from "../../holmes";
 
-const useHolmesValue = (key = '',) => {
-  const [value, setValue] = useState();
-  const obsRef = useRef(null);
+const useHolmesValue = (key = '', initialState) => {
+  const [value,setValue] = useState(initialState);
   const subRef = useRef(null);
+  const observable = useObservable(key, initialState);
 
-
-  (function initObservable() {
-    if (!obsRef.current) {
-      const context = getGlobalContext();
-      if (context.has(key)) {
-        obsRef.current = context.get(key);
-      }
-    }
-  })()
-
-
-  useEffect(() => {
-    if (obsRef.current) {
-      subRef.current = obsRef.current.subscribe((data) => {
+  if (observable) {
+    subRef.current = observable.subscribe((data) => {
+      if(data !== undefined && data !== value){
         setValue(data);
-      });
-    }
-  }, [obsRef.current]);
+      }
+    });
+  }
 
   useEffect(() => {
     return () => {
-      if(subRef.current) {
+      if (subRef.current) {
         subRef.current.unsubscribe();
       }
     };

@@ -35,8 +35,6 @@ function App() {
     reducer
   );
 
-  console.log('reducerState',state, dispatch);
-
   return (
     <>
       {JSON.stringify(state)}

@@ -9,9 +9,10 @@ const useHolmesReducer = (key = '') => {
   useEffect(() => {
     const context = getGlobalContext();
     const dispatchGlobal = context.has(`${key}_dispatch`) ? context.get(`${key}_dispatch`) : null;
-    // if(!dispatchGlobal) throw new Error(`${key} has not been setted, set a reducer first with setHolmesReducer() hook`);
+    //if(!dispatchGlobal) throw new Error(`${key} has not been setted, set a reducer first with setHolmesReducer() hook`);
     dispatch.current = dispatchGlobal;
   }, []);
+
   const state = useHolmesValue(key);
 
   return [state, dispatch.current];

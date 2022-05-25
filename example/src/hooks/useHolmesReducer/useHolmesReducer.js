@@ -12,6 +12,7 @@ const useHolmesReducer = (key = '') => {
     //if(!dispatchGlobal) throw new Error(`${key} has not been setted, set a reducer first with setHolmesReducer() hook`);
     dispatch.current = dispatchGlobal;
   }, []);
+
   const state = useHolmesValue(key);
 
   return [state, dispatch.current];
