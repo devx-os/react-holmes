@@ -1,7 +1,6 @@
 import {useState, useEffect, useRef} from 'react';
 
 import useObservable from "../useObservable/useObservable";
-import {getGlobalContext} from "../../holmes";
 
 const useHolmesValue = (key = '', initialState) => {
   const [value,setValue] = useState(initialState);
