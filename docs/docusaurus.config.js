@@ -16,7 +16,7 @@ const config = {
   trailingSlash: false,
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Dev-X Team', // Usually your GitHub org/user name.
+  organizationName: 'devx-os', // Usually your GitHub org/user name.
   projectName: 'react-holmes', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
