@@ -1,20 +1,54 @@
-# React Holmes - Elementary State Management for React
-Holmes is a 0 config, fast and elementary state management for React.
+# React Holmes 🔍 - Elementary State Orchestrator for React
+🔍 Holmes is a 0 config, fast and elementary state orchestrator for React.
 
 Holmes has a very minimal API. It is as simple to use as React’s integrated hooks, but all state is globally accessible.
+
+💡 Easy as React state hooks
+
+🔄 State synchronization between components
+
+🛰️ Distributed and not centralized state
+
+🤯 No mutable objects
+
+🚀 Fast
 
 ## Installation
 `npm i @devx-os/react-holmes` or `yarn add @devx-os/react-holmes`
 
-## Why Holmes?
+## Docs
 
+https://devx-os.github.io/react-holmes/
+
+## Why Holmes?
 Holmes has one objective: **make state management as easy and fast as possible.**
 
-Holmes is built on top of RxJS, which is a library for reactive programming and we are using it to make the state management process elementary.
+React components has a built-in state object, where you store property values that belongs to the component.
 
-Simplfying the state management process is a great way to improve the performance of your application and with Holmes we can achieve this result.
+When the state object changes, the component re-renders.
 
-No external configuration is required, no boilerplates code require, install the npm package and you are ready to use Holmes's hooks.
+This behaviour has certain limitations:
+
+Component state can only be shared by pushing it up to the common ancestor, but this might include a huge tree that then needs to re-render.
+React-Holmes adopts a new vision when talking about state handling.
+
+As other state managers use an external single source of truth to hydrate app client on state change, **React-Holmes does not create an external store** and does not need to wrap your app in a context.
+
+## So, where is the global state?
+There is no global state, actually.
+
+The state is decentralized into components themselves.
+
+The ONLY differences are the hook declared for state management and a key to identify state chunk.
+
+While to declare a React state we need to declare it as:
+
+    const [state, setState] = React.useState('test');
+
+with React-Holmes we need to declare it as:
+
+    const [state, setState] = useHolmesState('key', 'test');
+
 
 ## Hooks 
 
