@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Motivation
 
 *React* components has a built-in state object, where you store property values that belongs to the component. 

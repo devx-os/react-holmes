@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Getting started
 
 🔍 **Holmes** is a 0 config, fast and elementary state orchestrator for React.
