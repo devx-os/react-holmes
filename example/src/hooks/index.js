@@ -3,7 +3,6 @@ import useHolmesSelector from "./useHolmesSelector/useHolmesSelector";
 import useHolmesValue from "./useHolmesValue/useHolmesValue";
 import useSetHolmesReducer from "./useSetHolmesReducer/useSetHolmesReducer";
 import useHolmesReducer from "./useHolmesReducer/useHolmesReducer";
-
 export {
   useHolmesState,
   useHolmesSelector,
