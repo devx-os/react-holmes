@@ -8,7 +8,7 @@ const [state, setState] = useHolmesState(key, initialState);
 
 ```jsx title="Example"
 import React from 'react';
-import {useHolmesState} from 'react-holmes/hooks';
+import {useHolmesState} from 'react-holmes/Hooks';
 
 function MyComponent(props) {
 
