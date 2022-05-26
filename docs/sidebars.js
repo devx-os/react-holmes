@@ -25,7 +25,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Hooks',
-      items: ['Hooks/use-holmes-reducer', 'Hooks/use-holmes-selector', 'Hooks/use-holmes-state', 'Hooks/use-holmes-value', 'Hooks/use-set-holmes-reducer'],
+      items: ['Hooks/use-holmes-state', 'Hooks/use-holmes-value', 'Hooks/use-holmes-reducer', 'Hooks/use-holmes-selector', 'Hooks/use-set-holmes-reducer'],
     },
 ]
 
