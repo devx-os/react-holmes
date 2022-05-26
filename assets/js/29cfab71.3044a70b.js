@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[39],{5722:function(e){e.exports=JSON.parse('{"label":"facebook","permalink":"/react-holmes/blog/tags/facebook","allTagsPath":"/react-holmes/blog/tags","count":1}')}}]);
