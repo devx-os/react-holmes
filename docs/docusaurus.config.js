@@ -8,24 +8,24 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'React Holmes',
   tagline: 'Elementary State Orchestrator for React',
-  url: 'https://github.com/devx-os/react-holmes',
-  baseUrl: '/',
+  url: 'https://github.com/devx-os',
+  baseUrl: '/react-holmes/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-
+  trailingSlash: false,
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'Dev-X Team', // Usually your GitHub org/user name.
-  projectName: 'React-Holmes', // Usually your repo name.
+  projectName: 'react-holmes', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+  // i18n: {
+  //   defaultLocale: 'en',
+  //   locales: ['en'],
+  // },
 
   presets: [
     [
