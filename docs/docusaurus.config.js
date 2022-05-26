@@ -57,9 +57,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'React Holmes - Elementary State Manager',
+        title: 'React Holmes - Elementary State Orchestrator',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'React Holmes - Elementary State Orchestrator',
           src: 'img/reactLogo.jpg',
         },
         items: [
@@ -81,31 +81,60 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Introduction',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Getting started',
                 to: '/docs/Introduction/getting-started',
+              },
+              {
+                label: 'Motivation',
+                to: '/docs/Introduction/motivation',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Hooks',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'useHolmesReducer',
+                to: '/docs/Hooks/use-holmes-reducer',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'useHolmesSelector',
+                to: '/docs/Hooks/use-holmes-selector',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'useHolmesState',
+                to: '/docs/Hooks/use-holmes-state',
               },
+              {
+                label: 'useHolmesValue',
+                to: '/docs/Hooks/use-holmes-value',
+              },
+              {
+                label: 'useSetHolmesReducer',
+                to: '/docs/Hooks/use-set-holmes-reducer',
+              }
             ],
           },
+          // {
+          //   title: 'Community',
+          //   items: [
+          //     {
+          //       label: 'Stack Overflow',
+          //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+          //     },
+          //     {
+          //       label: 'Discord',
+          //       href: 'https://discordapp.com/invite/docusaurus',
+          //     },
+          //     {
+          //       label: 'Twitter',
+          //       href: 'https://twitter.com/docusaurus',
+          //     },
+          //   ],
+          // },
           {
             title: 'More',
             items: [
